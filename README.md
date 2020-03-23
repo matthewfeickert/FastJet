@@ -24,7 +24,7 @@ You can either use the image as "`FastJet` as a service", as demoed here with th
 
 ```
 docker run --rm -v $PWD:$PWD -w $PWD matthewfeickert/fastjet:fastjet3.3.3 \
-  -c "g++ tests/test_short_example.cc -o tests/short_example \$(/usr/local/bin/fastjet-config --cxxflags --libs --plugins); ./tests/short_example"
+  -c 'g++ tests/test_short_example.cc -o tests/short_example $(/usr/local/bin/fastjet-config --cxxflags --libs --plugins); ./tests/short_example'
 ```
 
 or using the Python bindings

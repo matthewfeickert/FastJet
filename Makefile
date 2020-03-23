@@ -20,3 +20,18 @@ run_local:
 		-v $(shell pwd):$(shell pwd) \
 		-w $(shell pwd) \
 		matthewfeickert/fastjet:latest
+
+test:
+	# Use single quotes to not exapnd contens of $()
+	docker run \
+		--rm \
+		-v $(shell pwd):$(shell pwd) \
+		-w $(shell pwd) \
+		matthewfeickert/fastjet:latest \
+		-c 'g++ tests/test_short_example.cc -o tests/short_example $$(/usr/local/bin/fastjet-config --cxxflags --libs --plugins); ./tests/short_example'
+	docker run \
+		--rm \
+		-v $(shell pwd):$(shell pwd) \
+		-w $(shell pwd) \
+		matthewfeickert/fastjet:latest \
+		-c "python tests/test_python.py"
