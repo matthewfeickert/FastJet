@@ -32,3 +32,10 @@ jobs:
         -w $PWD
         matthewfeickert/fastjet:test
         -c "g++ tests/test_short_example.cc -o short_example; ./tests/short_example"
+    - name: Run test program in Python
+      run: >-
+        docker run --rm
+        -v $PWD:$PWD
+        -w $PWD
+        matthewfeickert/fastjet:test
+        -c "python tests/test_python.py"

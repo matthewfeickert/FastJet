@@ -20,3 +20,9 @@ test:
 		-w $(shell pwd) \
 		matthewfeickert/fastjet:latest \
 		-c "g++ tests/test_short_example.cc -o short_example; ./tests/short_example"
+	docker run \
+		--rm \
+		-v $(shell pwd):$(shell pwd) \
+		-w $(shell pwd) \
+		matthewfeickert/fastjet:latest \
+		-c "python tests/test_python.py"
