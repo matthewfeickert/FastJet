@@ -19,8 +19,8 @@ ARG FASTJET_VERSION=3.3.3
 
 RUN mkdir /code && \
     cd /code && \
-    wget http://fastjet.fr/repo/fastjet-${FASTJET_VERSION}.tgz && \
-    tar xvfz fastjet-${FASTJET_VERSION}.tgz && \
+    wget http://fastjet.fr/repo/fastjet-${FASTJET_VERSION}.tar.gz && \
+    tar xvfz fastjet-${FASTJET_VERSION}.tar.gz && \
     cd fastjet-${FASTJET_VERSION} && \
     ./configure --help && \
     export CPP=$(which g++) && \
