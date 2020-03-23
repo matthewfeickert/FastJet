@@ -1,3 +1,4 @@
+import fastjet
 from fastjet import PseudoJet
 from fastjet import JetDefinition
 
