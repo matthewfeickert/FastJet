@@ -23,7 +23,7 @@ RUN mkdir /code && \
     tar xvfz fastjet-${FASTJET_VERSION}.tar.gz && \
     cd fastjet-${FASTJET_VERSION} && \
     ./configure --help && \
-    export CPP=$(which g++) && \
+    export CPP=$(which gcc) && \
     export CXX=$(which g++) && \
     export PYTHON=$(which python3) && \
     ./configure \
