@@ -13,16 +13,10 @@ image:
 run:
 	docker run --rm -it matthewfeickert/fastjet:latest
 
-test:
+run_local:
 	docker run \
 		--rm \
+		-it \
 		-v $(shell pwd):$(shell pwd) \
 		-w $(shell pwd) \
-		matthewfeickert/fastjet:latest \
-		-c "g++ tests/test_short_example.cc -o short_example; ./tests/short_example"
-	docker run \
-		--rm \
-		-v $(shell pwd):$(shell pwd) \
-		-w $(shell pwd) \
-		matthewfeickert/fastjet:latest \
-		-c "python tests/test_python.py"
+		matthewfeickert/fastjet:latest
