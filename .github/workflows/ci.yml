@@ -1,0 +1,41 @@
+name: CI/CD
+
+on:
+  push:
+  pull_request:
+  schedule:
+  - cron:  '1 0 * * 0'
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Build Docker image
+      if: "!(startsWith(github.ref, 'refs/tags/'))"
+      uses: docker/build-push-action@v1
+      with:
+        repository: matthewfeickert/fastjet
+        dockerfile: Dockerfile
+        tags: test
+        tag_with_sha: true
+        tag_with_ref: true
+        push: false
+    - name: List Built Images
+      run: docker images
+    - name: Run test program in C++
+      run: >-
+        docker run --rm
+        -v $PWD:$PWD
+        -w $PWD
+        matthewfeickert/fastjet:test
+        -c "g++ tests/test_short_example.cc -o tests/short_example \$(/usr/local/bin/fastjet-config --cxxflags --libs --plugins); ./tests/short_example"
+    - name: Run test program in Python
+      run: >-
+        docker run --rm
+        -v $PWD:$PWD
+        -w $PWD
+        matthewfeickert/fastjet:test
+        -c "python tests/test_python.py"
