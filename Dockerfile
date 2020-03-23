@@ -29,6 +29,7 @@ RUN mkdir /code && \
       --prefix=/usr/local \
       --enable-pyext=yes && \
     make -j$(($(nproc) - 1)) && \
+    make check && \
     make install && \
     rm -rf /code
 
